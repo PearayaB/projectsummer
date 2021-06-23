@@ -1,6 +1,6 @@
 .jumbotron {
   background-color: black; 
-  color: #ffffff;
+  color: black;
 }
  .navbar {
       margin-bottom: 0;
@@ -9,14 +9,14 @@
     
     /* Add a gray background color and some padding to the footer */
     footer {
-      background-color: #f2f2f2;
+      background-color: black;
       padding: 25px;
     }
     
   .carousel-inner img {
       width: 100%; /* Set width to 100% */
       margin: auto;
-      min-height:200px;
+      height:200px;
   }
 
   /* Hide the carousel text when the screen is less than 600 pixels wide */
@@ -25,3 +25,15 @@
       display: none; 
     }
   }
+  .img{
+     max-height: 100%;
+
+  }
+  .imbox{
+      
+      height: 550px;
+      
+  }
+body{
+  background-color: black;
+}
