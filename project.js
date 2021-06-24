@@ -1,42 +1,124 @@
 var output = document.getElementById('output')
-var outputShowMyList = document.getElementById('outputlist')
-var Mylist = document.getElementById('Mylist')
-var detailbox = document.getElementById('detail')
-var sild = document.getElementById('sild')
-
-function searchAnime(event){
-    let query = document.getElementById('searchInput').nodeValue
+function searchAnime(anime) {
+    output.innerHTML=''
+    let query = document.getElementById('searchInput').value
     fetch(`https://api.jikan.moe/v3/search/anime?q=${query}`)
-    .then((Response)=>{
-        return Response.json()
-    }).then((data)=>{
-        data.results.map((element)=>{
-            console.log(element)
-            addAnimeToCard(element)
+        .then((Response) => {
+            return Response.json()
+        }).then((data) => {
+            data.results.map((element) => {
+                // console.log(element)
+                addAnimeToCard(element)
+            })
         })
-    })
-}
-function onLoad(){
-    document.getElementById('searchButton').addEventListener('click',searchAnime)
 }
 function addAnimeToData(anime) {
-    let imageElem = document.getElementById('image')
-    imageElem.setAttribute('src',anime.image_url)
-    let titleElem = document.getElementById('title')
-    titleElem.innerHTML = anime.title
+    fetch(`https://se104-project-backend.du.r.appspot.com/movies`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(anime)
+    }).then((response) => {
+        if (response.status === 200) {
+            return response.json()
+        } else {
+            throw Error(response.statusText)
+        }
+    }).then(data => {
+        console.log(data)
+        output.innerHTML=''
+        showMyList()
+        
+        
+    })
 }
+
+
 function addAnimeToCard(anime) {
-    const searchList = document.getElementById('searchList')
+    
     let row = document.createElement('row')
     let card = document.createElement('div')
     let img = document.createElement('img')
-    img.setAttribute('src',anime.image_url)
-    img.addEventListener('dblclick',addToFavAnime())
+    img.setAttribute('src', anime.image_url)
+    
     card.appendChild(img)
     let titleAnime = document.createElement('h5')
     titleAnime.innerHTML = `${anime.title}`
 
     card.appendChild(titleAnime)
-    searchList.appendChild(card)
+    card.addEventListener('dblclick', () => {
+        // alert('โง่')
+        var cat = confirm(`Add ${anime.title} On MyList`)
+        if(cat == true){
+             let movie = anime
+             let id =632110349
+             a ={id,movie}
+             console.log(a)
+             addAnimeToData(a)
+            
+        }
+    })
+    
+    output.appendChild(card)
 }
-function addToFavAnime(){}
+function addToFavAnime() { }
+document.getElementById('searchButton').addEventListener('click', searchAnime)
+
+// ----------------------------------------------------------------------------
+
+// function onLoad() {
+
+
+//     inputsearch.addEventListener('click', () => {
+//         detailbox.style.display = 'none'
+//         SearchBox.style.display = 'block'
+//         sild.style.display = 'none'
+//         Mylist.style.display = 'none'
+//         let inputbarsearch = document.getElementById('barsearch').value
+//         fetch(`https://api.jikan.moe/v3/search/anime?q=${inputbarsearch}`).then(response => {
+//             return response.json()
+//         }).then(newresponse => {
+//             showanime(newresponse.results)
+//         })
+//     })
+//     function showanime(getnewresponse) {
+//         document.getElementById('output').innerHTML = ''
+//         for (anime of getnewresponse) {
+//             adddom(anime)
+//         }
+//     }
+// }
+document.getElementById('mylist').addEventListener('click',showMyList)
+function showMyList(){
+    output.innerHTML =''
+    fetch('https://se104-project-backend.du.r.appspot.com/movies/632110349')
+        .then((response) => {
+            return response.json()
+        }).then(data => {
+            MyList(data)
+        })
+}
+function MyList(dataList) {
+
+    for (data of dataList) {
+
+        addcardOnMylist(data)
+    }
+}
+function addcardOnMylist(anime){
+    let row = document.createElement('row')
+    let card = document.createElement('div')
+    let img = document.createElement('img')
+    img.setAttribute('src', anime.image_url)
+    
+    card.appendChild(img)
+    let titleAnime = document.createElement('h5')
+    titleAnime.innerHTML = `${anime.title}`
+
+    card.appendChild(titleAnime)
+    
+    
+    output.appendChild(card)
+}
+
