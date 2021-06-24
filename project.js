@@ -92,7 +92,7 @@ document.getElementById('searchButton').addEventListener('click', searchAnime)
 document.getElementById('mylist').addEventListener('click',showMyList)
 function showMyList(){
     output.innerHTML =''
-    fetch('https://se104-project-backend.du.r.appspot.com/movies/632110349')
+    fetch(`https://se104-project-backend.du.r.appspot.com/movies/632110349`)
         .then((response) => {
             return response.json()
         }).then(data => {
@@ -115,10 +115,38 @@ function addcardOnMylist(anime){
     card.appendChild(img)
     let titleAnime = document.createElement('h5')
     titleAnime.innerHTML = `${anime.title}`
-
-    card.appendChild(titleAnime)
+    let button = document.createElement('button')
+    button.classList.add('btn')
     
+        button.classList.add('btn-danger')
+        button.setAttribute('type', 'button')
+        button.innerText = 'DELETE'
+        button.addEventListener('click', function() {
+            let confirmMsg = confirm('Do you want to remove this anime?')
+            if(confirmMsg){
+                deleteData(anime)
+            }
+            
+        })
+        
+    card.appendChild(titleAnime)
+    card.appendChild(button)
     
     output.appendChild(card)
 }
+function deleteData(id){
+    fetch(`https://se104-project-backend.du.r.appspot.com/movie?id=632110349&&movieId=${id.id}`,{
+        method: 'DELETE'
+    }).then(response => {
+        if(response.status === 200){
+            return response.json()
+        }else{
+            throw Error(response.statusText)    
+        }
+     }).then(data => {
+         alert(`This anime is delete now`)
+
+     }).catch(error => {
+         alert(`your input anime id is not in the database`)
+     })}
 
