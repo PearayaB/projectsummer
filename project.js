@@ -106,7 +106,7 @@ function addcardOnMylist(anime) {
   buttonDetail.innerText = "detail";
   buttonDetail.addEventListener("click", function () {
     output.innerHTML = "";
-    showcontent(anime);;
+    showcontent(anime);
   });
   card.appendChild(titleAnime);
   card.appendChild(button);
@@ -169,6 +169,7 @@ function showcontent(anime) {
     button.innerText = "Back";
     button.addEventListener("click", function () {
       output.innerHTML = "";
+      showMyList()
     });
 
     col2.appendChild(button);
