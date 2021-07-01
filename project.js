@@ -142,7 +142,8 @@ function showcontent(anime) {
   one.appendChild(img);
   Allmight.appendChild(one);
   let txtName = document.createElement("div");
-  txtName.classList.add("col-9");
+  txtName.classList.add("col");
+  txtName.classList.add("controlflex");
   let url = data.url;
   let title = data.title;
   let synopsis = data.synopsis;
