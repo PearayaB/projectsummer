@@ -59,9 +59,9 @@ function addAnimeToCard(anime) {
   output.appendChild(card);
 }
 
-document.getElementById("searchButton").addEventListener("click", searchAnime);
+document.getElementById("searchButton").addEventListener("click", function(){searchAnime()});
 
-document.getElementById("mylist").addEventListener("click", showMyList);
+document.getElementById("mylist").addEventListener("click", function(){showMyList()});
 function showMyList() {
   output.innerHTML = "";
   fetch(`https://se104-project-backend.du.r.appspot.com/movies/632110349`)
