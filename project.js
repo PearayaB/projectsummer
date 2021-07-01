@@ -106,7 +106,7 @@ function addcardOnMylist(anime) {
   buttonDetail.innerText = "detail";
   buttonDetail.addEventListener("click", function () {
     output.innerHTML = "";
-    showDetail(data);
+    showDetail(anime);
   });
   card.appendChild(titleAnime);
   card.appendChild(button);
@@ -201,6 +201,6 @@ function deleteData(id) {
 
     overAll.appendChild(Allmight);
     overAll.appendChild(txtName);
-    output1.appendChild(overAll);
+    output.appendChild(overAll);
   }
 }
