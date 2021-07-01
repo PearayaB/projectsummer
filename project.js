@@ -148,14 +148,16 @@ function showcontent(anime) {
 
     let row1 = document.createElement("div");
     row1.classList.add("row");
-    row1.innerHTML = ` Name : ${title} <br>
+    col_item = document.createElement("div")
+    col_item.classList.add("col")
+    col_item.innerHTML = ` Name : ${title} <br>
                               Type : ${type} <br>
                               Episodes : ${episodes} <br>
                               Rated : ${rated} <br>
                               Score : ${score} <br>
                               Url : ${url} <br>
                               ${synopsis}`;
-
+    row1.appendChild(col_item)
     let row2 = document.createElement("div");
     row2.classList.add("row");
     let col10 = document.createElement("div");
