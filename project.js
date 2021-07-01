@@ -7,7 +7,6 @@ function searchAnime(anime) {
             return Response.json()
         }).then((data) => {
             data.results.map((element) => {
-                // console.log(element)
                 addAnimeToCard(element)
             })
         })
@@ -48,7 +47,6 @@ function addAnimeToCard(anime) {
 
     card.appendChild(titleAnime)
     card.addEventListener('dblclick', () => {
-        // alert('โง่')
         var cat = confirm(`Add ${anime.title} On MyList`)
         if(cat == true){
              let movie = anime
@@ -62,33 +60,9 @@ function addAnimeToCard(anime) {
     
     output.appendChild(card)
 }
-function addToFavAnime() { }
+
  document.getElementById('searchButton').addEventListener('click', searchAnime)
 
-// ----------------------------------------------------------------------------
-
-// function onLoad() {
-
-
-//     inputsearch.addEventListener('click', () => {
-//         detailbox.style.display = 'none'
-//         SearchBox.style.display = 'block'
-//         sild.style.display = 'none'
-//         Mylist.style.display = 'none'
-//         let inputbarsearch = document.getElementById('barsearch').value
-//         fetch(`https://api.jikan.moe/v3/search/anime?q=${inputbarsearch}`).then(response => {
-//             return response.json()
-//         }).then(newresponse => {
-//             showanime(newresponse.results)
-//         })
-//     })
-//     function showanime(getnewresponse) {
-//         document.getElementById('output').innerHTML = ''
-//         for (anime of getnewresponse) {
-//             adddom(anime)
-//         }
-//     }
-// }
 document.getElementById('mylist').addEventListener('click',showMyList)
 function showMyList(){
     output.innerHTML =''
@@ -158,20 +132,9 @@ function deleteData(id){
      }).catch(error => {
          alert(`your input anime id is not in the database`)
      })
-
-    //function displayData(disDetail){
-     //   fetch(`https://se104-project-backend.du.r.appspot.com/movie/632110349/${disDetail.id}`)
-      //  .then(response =>{
-     //     return response.json()
-     //   }).then(data => {
-      //    disDetail.innerHTML = ''
-      //    hide()
-      //    showDetail(data)
-      //  }) // }
-      }
       
   
-    function showDetail(data){
+    function showDetail(anime){
         let overAll = document.createElement('div')
         overAll.classList.add("row")
         let Allmight = document.createElement('div')
@@ -248,4 +211,4 @@ function deleteData(id){
         overAll.appendChild(Allmight)
         overAll.appendChild(txtName)
         output1.appendChild(overAll)
-    }    
+    }    }
