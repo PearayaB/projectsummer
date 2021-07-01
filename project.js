@@ -106,7 +106,7 @@ function addcardOnMylist(anime) {
   buttonDetail.innerText = "detail";
   buttonDetail.addEventListener("click", function () {
     output.innerHTML = "";
-    showDetail(anime);
+    showcontent(anime);
   });
   card.appendChild(titleAnime);
   card.appendChild(button);
@@ -134,7 +134,7 @@ function deleteData(id) {
       alert(`your input anime id is not in the database`);
     });
 
-  function showDetail(anime) {
+  function showcontent(anime) {
     let overAll = document.createElement("div");
     overAll.classList.add("row");
     let Allmight = document.createElement("div");
