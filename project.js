@@ -136,7 +136,7 @@ function addcardOnMylist(anime){
     buttonDetail.innerText = 'detail'
     buttonDetail.addEventListener('click',function(){
         output.innerHTML=''
-        showDetail
+        showDetail(data)
     })
     card.appendChild(titleAnime)
     card.appendChild(button)
@@ -159,18 +159,18 @@ function deleteData(id){
          alert(`your input anime id is not in the database`)
      })
 
-    function displayData(disDetail){
-        fetch(`https://se104-project-backend.du.r.appspot.com/movie/632110349/${disDetail.id}`)
-        .then(response =>{
-          return response.json()
-        }).then(data => {
-          disDetail.innerHTML = ''
-          hide()
-          showDetail(data)
-        })
+    //function displayData(disDetail){
+     //   fetch(`https://se104-project-backend.du.r.appspot.com/movie/632110349/${disDetail.id}`)
+      //  .then(response =>{
+     //     return response.json()
+     //   }).then(data => {
+      //    disDetail.innerHTML = ''
+      //    hide()
+      //    showDetail(data)
+      //  }) // }
       }
       
-    }
+  
     function showDetail(data){
         let overAll = document.createElement('div')
         overAll.classList.add("row")
